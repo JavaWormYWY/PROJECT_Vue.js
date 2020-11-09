@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ICON BUTTON</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="/js/librarys/vue.js" ></script>
+	<style type="text/css">
+		[v-cloak] {display:none;}
+		.iconbutton:hover {color: orange; }
+	</style>
+</head>
+<body>
+<div id="app" v-cloak>   
+	<tool-bar />	
+</div>
+<script type="module">
+import ToolBar from './ToolBar.js';
+
+let vm = new Vue({
+	el:'#app'
+	,data:{
+	}
+	,components:{
+		ToolBar
+	}
+});
+</script>
+</body>
+</html>
