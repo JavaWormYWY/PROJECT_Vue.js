@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>하위 컴포넌트에서 상위 컴포넌트로 데이터가 흐를 수 있는가?</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/js/librarys/vue.js" ></script>
+<style type="text/css">
+[v-cloak] {display:none;}
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+	<my-component :child-attr1="vvv" ></my-component>
+	<input  v-model="vvv"/> // 하위 속성을 수정을 하더라도 상위 속성에 반응 되지 않는다...
+</div>
+<script >
+let Comp1 = {
+	template: `<div>사용자 정의 컴포넌트 입니다!<br/>
+        /{{childAttr1}}<br/>
+	    /childAttr1:<input v-model="childAttr1" /><br/>
+        /{{value1}}<br/>
+	    /value1:<input v-model="value1" /><br/>
+	           </div>`
+	,props : {
+		childAttr1 : {
+			type:String
+			,required : true
+		}
+	}
+	,data : function(){
+		console.log('data는 항상 함수이어야 한다.');
+		return {
+			value1 : this.childAttr1  //와우 이것도 양방향으로 반응이 된다.
+		}
+	}
+};
+     
+
+let vm = new Vue({
+	el:'#app'
+	,data:{
+		vvv : "123"
+	}
+	,components:{
+		'my-component' : Comp1
+	}
+});
+</script>
+
+</body>
+</html>

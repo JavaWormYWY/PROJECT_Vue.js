@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>data 하위의 객체도 양방향으로 자동 동기화 되는가?</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/js/librarys/vue.js" ></script>
+	<style type="text/css">
+		[v-cloak] {display:none;}
+		.iconbutton:hover {color: orange; }
+	</style>
+</head>
+<body>
+-data 하위의 객체도 양방향으로 자동 동기화 되는가?</br>
+>> 된다.
+<div id="app" v-cloak>
+{{value}}   <br/>
+{{obj1.value1}} <br/>
+{{obj1.value2}}<br/>
+<input v-model="obj1.value2">
+</div>
+-그렇다면 자식 obj를 통으로 교체한다면 어떤 일이 벌어질까?</br>
+>> 그래도 된다.</br>
+<div id="app2" v-cloak>
+{{value}}   <br/>
+{{obj1.value1}} <br/>
+{{obj1.value2}}<br/>
+<input v-model="obj1.value2">
+<button @click="change">dd</button>
+</div>
+<script >
+let vm = new Vue({
+	el:'#app'
+	,data:{
+		value:"test"
+		,obj1:{
+			value1:"A"
+			,value2:"B"
+		}
+	}
+	,components:{
+	}
+});
+let vm2 = new Vue({
+	el:'#app2'
+	,data:{
+		value:"test"
+		,obj1:{
+			value1:"A"
+			,value2:"B"
+		}
+	}
+	,components:{
+	}
+	,methods:{
+		change : function(){
+			this.obj1 = {value1:"C",value2:"D"}
+		}
+	}
+});
+</script>
+
+
+</body>
+</html>

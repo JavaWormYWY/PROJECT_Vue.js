@@ -1,0 +1,205 @@
+
+
+
+[Vue warn]: Failed to mount component: template or render function not defined.
+
+found in
+
+---> <MyComponent>
+       <Root>
+       
+       
+       
+템플릿이 이상하게 설정이 되었나?
+let Comp1 = new Vue({
+	 template : `<div>sdfsdf</div>`
+});
+이렇게 되어 있는데 뭐가 문제인가?
+
+>> 컴포넌트로 vue를 주는 것이 아니라. option(object)로 넘겨 주어야 한다.
+
+let vm = new Vue({
+	el:'#app'
+	,data:{
+	}
+	,components:{
+		'my-component' : Comp1
+	}
+});
+
+
+
+
+
+
+
+
+
+
+[Vue warn]: Missing required prop: "childAttr1"
+
+found in
+
+---> <MyComponent>
+       <Root>
+       
+>>해당 속성이 만들어 져 있지 않아서 발생한 에러.
+
+
+
+
+
+
+
+
+
+vue.js:634 [Vue warn]: The "data" option should be a function that returns a per-instance value in component definitions.
+
+>> 컴포넌트의 data 속성은 항상 함수로 리턴하는 형식이어야 한다.
+
+
+
+
+
+
+
+
+
+
+[Vue warn]: data functions should return an object:
+https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function
+
+found in
+
+---> <MyComponent>
+       <Root>
+warn @ vue.js:634
+initData @ vue.js:4706
+initState @ vue.js:4641
+Vue._init @ vue.js:5000
+VueComponent @ vue.js:5147
+createComponentInstanceForVnode @ vue.js:3290
+init @ vue.js:3121
+createComponent @ vue.js:5973
+createElm @ vue.js:5920
+createChildren @ vue.js:6048
+createElm @ vue.js:5949
+patch @ vue.js:6509
+Vue._update @ vue.js:3946
+updateComponent @ vue.js:4067
+get @ vue.js:4478
+Watcher @ vue.js:4467
+mountComponent @ vue.js:4074
+Vue.$mount @ vue.js:9044
+Vue.$mount @ vue.js:11944
+Vue._init @ vue.js:5012
+Vue @ vue.js:5078
+(anonymous) @ subCompoentData.html:31
+vue.js:634 [Vue warn]: Error in render: "TypeError: Cannot use 'in' operator to search for '_c' in undefined"
+
+found in
+
+---> <MyComponent>
+       <Root>
+warn @ vue.js:634
+logError @ vue.js:1893
+globalHandleError @ vue.js:1888
+handleError @ vue.js:1848
+Vue._render @ vue.js:3553
+updateComponent @ vue.js:4067
+get @ vue.js:4478
+Watcher @ vue.js:4467
+mountComponent @ vue.js:4074
+Vue.$mount @ vue.js:9044
+Vue.$mount @ vue.js:11944
+init @ vue.js:3125
+createComponent @ vue.js:5973
+createElm @ vue.js:5920
+createChildren @ vue.js:6048
+createElm @ vue.js:5949
+patch @ vue.js:6509
+Vue._update @ vue.js:3946
+updateComponent @ vue.js:4067
+get @ vue.js:4478
+Watcher @ vue.js:4467
+mountComponent @ vue.js:4074
+Vue.$mount @ vue.js:9044
+Vue.$mount @ vue.js:11944
+Vue._init @ vue.js:5012
+Vue @ vue.js:5078
+(anonymous) @ subCompoentData.html:31
+vue.js:1897 TypeError: Cannot use 'in' operator to search for '_c' in undefined
+    at Object.has (vue.js:2089)
+    at Proxy.eval (eval at createFunction (vue.js:11649), <anonymous>:3:12)
+    at VueComponent.Vue._render (vue.js:3551)
+    at VueComponent.updateComponent (vue.js:4067)
+    at Watcher.get (vue.js:4478)
+    at new Watcher (vue.js:4467)
+    at mountComponent (vue.js:4074)
+    at VueComponent.Vue.$mount (vue.js:9044)
+    at VueComponent.Vue.$mount (vue.js:11944)
+    at init (vue.js:3125)
+    
+>>콤포넌트의 data 속성은 obj를 리턴하는 함수형태이어야 한다.
+
+
+
+
+
+
+
+
+
+
+vue.js:634 [Vue warn]: Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "childAttr1"
+
+found in
+
+---> <MyComponent>
+       <Root>    
+       
+>> 부모 vue에서 넘겨 받은 props의 속성은 화면과 반응형으로 작동하고 수정도 가능하지만. 
+부모에서 값이 변경되었을 경우 엎어쳐지므로
+props는 실제로 final로 취급해서 코딩하기를 권장한다. 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+vue.js:634 [Vue warn]: Error compiling template:
+
+invalid expression: Unexpected token ':' in
+
+       
+						{'iconbutton' : iconbutton 
+						 ,'on' : on }
+
+  Raw expression: :class="   
+						{'iconbutton' : iconbutton 
+						 ,'on' : on }"
+
+
+1  |  <span 
+   |        
+2  |  					:class="   
+   |  ^^^^^^^^^^^^^^^^
+3  |  						{'iconbutton' : iconbutton 
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4  |  						 ,'on' : on }">
+   |  ^^^^^^^^^^^^^^^^^^^^
+
+found in
+
+---> <IconButton>
+       <ConnectButton>
+         <ToolBar>
+           <Root>
+           
+           
+           
+                  
